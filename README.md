@@ -5,9 +5,4 @@ This is a repository to upload files related to CodeSpace DataScience Master
 
 ## Acknowledgements
 
-a
-
-
-## ESTA ES MI RAMA DE PRUEBA
-
 
