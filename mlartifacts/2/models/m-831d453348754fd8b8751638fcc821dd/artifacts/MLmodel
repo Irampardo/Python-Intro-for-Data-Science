@@ -1,0 +1,27 @@
+artifact_path: mlflow-artifacts:/2/models/m-831d453348754fd8b8751638fcc821dd/artifacts
+flavors:
+  lightgbm:
+    code: null
+    data: model.skops
+    lgb_version: 4.6.0
+    model_class: lightgbm.sklearn.LGBMClassifier
+    serialization_format: skops
+    skops_trusted_types:
+    - lightgbm.sklearn.LGBMRegressor
+    - lightgbm.sklearn.LGBMClassifier
+    - collections.OrderedDict
+    - lightgbm.basic.Booster
+  python_function:
+    data: model.skops
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.lightgbm
+    python_version: 3.14.0
+mlflow_version: 3.16.0
+model_id: m-831d453348754fd8b8751638fcc821dd
+model_size_bytes: 446430
+model_uuid: m-831d453348754fd8b8751638fcc821dd
+prompts: null
+run_id: 4a100498bb8c4755bbce0032073c24b5
+utc_time_created: '2026-10-12 10:13:22.536642'
