@@ -112,7 +112,9 @@ with mlflow.start_run():
 
 ## 3. Model deployment with Docker
 
+## 3.1. Create a dockerfile within the main branch
 
+## 3.2. 
 
 
 ## 4. Kaggle challenge result (Spoiler alert!)
