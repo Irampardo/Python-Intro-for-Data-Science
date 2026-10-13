@@ -13,6 +13,11 @@ We will employ a datataset from a challenge in Kaggle: Loan Prediction Challenge
 
 
 # Outline of the analysis: 
+
+## 0. Github codespace
+
+We will perform everything using a codespace from github. To do so, we need to go to our github repository, create a branch named as "mlops" and then go to the green badge named as "<> Code" and then, within the "Codespaces" tab, click in the "..." to "Open in Visual Studio Code". Esentially, we are using the virual machine in Github but we are running it in our local installed VSCode as it is easier to manage
+
 ## 1. Model Prediction
 Perform data analysis and model prediction optimization and evaluation using a dataset from Kaggle: Loan Prediction Challenge (https://www.kaggle.com/competitions/playground-series-s4e10/submissions)
 
