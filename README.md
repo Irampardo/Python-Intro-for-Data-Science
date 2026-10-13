@@ -110,7 +110,11 @@ with mlflow.start_run():
 
 
 
-## 4. Kaggle challenge result
+## 4. Kaggle challenge result (Spoiler alert!)
+
+This is the final result obtained with Kaggle, employing CatBoostClassifier and optimizing the thresold to minimize the number of false positives (FP) (possible profit loss) and maximizing true positives (TP) or loss avoided:
+
+![description](https://github.com/Irampardo/Python-Intro-for-Data-Science/blob/main/Kaggle_LoanPrediction_Challenge.png?raw=true)
 
 
 
