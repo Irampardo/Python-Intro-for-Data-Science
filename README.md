@@ -112,9 +112,52 @@ with mlflow.start_run():
 
 ## 3. Model deployment with Docker
 
-## 3.1. Create a dockerfile within the main branch
+## 3.1. Option A: Create a dockerfile within the main branch, build docker image and run it
 
-## 3.2. 
+To build dockerfile image
+
+```bash
+docker build -t my_first_image -f ./Dockerfile .
+```
+
+To run Docker file
+
+```bash
+docker run --rm my_first_image
+```
+## 3.2. Deply the model using MLFlow and Docker.
+
+```bash
+export MLFLOW_TRACKING_URI=http://localhost:5000
+mlflow models build-docker --model-uri models:/<my_model>/Mmy_version> -n <my_docker_image_name>
+docker run <my_docker_image_name>
+```
+
+In our case it was:
+
+```bash
+export MLFLOW_TRACKING_URI=http://localhost:5000
+mlflow models build-docker \
+  --model-uri "models:/loan_prediction_model/1" \
+  --name "mymodel/loan_prediction_model"
+docker run <my_docker_image_name>
+```
+
+Optional: To check available registered models:
+
+```python
+import mlflow
+mlflow.set_tracking_uri("http://localhost:5000")
+
+client = mlflow.tracking.MlflowClient()
+
+# List registered model versions
+for mv in client.search_model_versions("name='loan_prediction_model'"):
+    print(mv.name, mv.version, mv.aliases, mv.source)
+
+# Or inspect a specific model
+print(client.get_registered_model("loan_prediction_model"))
+```
 
 
 ## 4. Kaggle challenge result (Spoiler alert!)
