@@ -3,12 +3,6 @@ This is a repository to upload files related to CodeSpace DataScience + IA Maste
 We will cover from data analysis to model creation&evaluation using MLFlow and model deployment using Docker. 
 We will employ a datataset from a challenge in Kaggle: Loan Prediction Challenge! (https://www.kaggle.com/competitions/playground-series-s4e10/submissions)
 
-# Outline of the analysis: 
-## 1. Perform data analysis and model prediction optimization and evaluation using a dataset from Kaggle: Loan Prediction Challenge (https://www.kaggle.com/competitions/playground-series-s4e10/submissions)
-## 2. Use MLFlow to track created models and obtained predictions from the same training dataset
-## 3. Deploy the model using Docker
-## 4. Validate our model results within the Kaggle Challenge!
-
 **Languages and Data Science tools**
 
 ![Python](https://img.shields.io/badge/Python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
@@ -17,28 +11,108 @@ We will employ a datataset from a challenge in Kaggle: Loan Prediction Challenge
 ![scikit-learn](https://img.shields.io/badge/scikit--learn-%23F7931E.svg?style=for-the-badge&logo=scikit-learn&logoColor=white)
 ![mlflow](https://img.shields.io/badge/MLflow-0194E2?style=for-the-badge&logo=mlflow&logoColor=white)
 
-Few tips and tools to install to flow within this pipeline:
 
-## 1. Model creation
+# Outline of the analysis: 
+## 1. Model Prediction
+Perform data analysis and model prediction optimization and evaluation using a dataset from Kaggle: Loan Prediction Challenge (https://www.kaggle.com/competitions/playground-series-s4e10/submissions)
 
-To create a new conda environment use:
+### 1.1. Setup
+
+a) Download Loan Predictions challenge dataset from https://www.kaggle.com/competitions/playground-series-s4e10/submissions
+b) Create a conda environment. To create a new conda environment use:
 
 ```bash
 conda create -n myenv python=3.14
 ```
 
-To install all required libraries at once, use:
+c) Install required libraries. To install all required libraries at once, use:
 
 ```bash
 pip install -r requirements.txt
 ```
-## 2. MLFlow models evaluation
+d) Install MLFlow
+
+```bash
+pip install mlflow
+```
+
+### 1.2. Exploratory Data Analysis (EDA)
+
+We will perform encode categorical variables and scale numerical variables, then we will simply evaluate the included variables in the analysis using a correlation matrix with the predicted/target variable
+
+### 1.3. Model
+
+We will split the data into test and training data and test several models, such as RandomForesClassifier, CatBoostClassifier, HistGradientBoostingClassifier, xgboost and lightgbm. We will store all those models in MLFlow to track them. 
+Once we have selected that model, we will optimize it by testing different training dataset splitting proportions and several thresholds to select the minimize the profit sacrificed (FP) while maximizing the loss avoided (TP): objective = Maximize(Amount of money we lose by TP - Amount of money we win by FP)
+
+### 1.4. Submission file
+
+Once we have tested several models parameters, we prepare the submission file to upload it to MLFlow run
 
 
-## 3. Docker installation and model deployment
+## 2. MLFlow 
+Track created models and obtained predictions from the same training dataset using MLFlow
+
+### 2.1. Connect to MLflow
+
+To start the MLflow server, in the terminal, run:
+
+```bash
+mlflow server
+```
+
+### 2.2. Submit to MLflow
+
+To connect to MLflow server, in python notebook chunks run:
+
+```python
+import mlflow
+
+mlflow.set_tracking_uri("http://localhost:5000")
+mlflow.set_experiment("loan_prediction")
+```
+To create runs and store them in MLflow server, in python run:
+
+```python
+with mlflow.start_run():
+
+    mlflow.set_tag("model", model.__class__.__name__)
+
+    mlflow.log_metric("auc", auc_metric)
+    mlflow.log_metric("optimal_threshold", optimal_threshold)
+    mlflow.log_metric("fpr_optimal", fpr_optimal)
+    mlflow.log_metric("tpr_optimal", tpr_optimal)
+    mlflow.log_metric("average_threshold", average_threshold)
+    mlflow.log_metric("fpr_average", fpr_average)
+    mlflow.log_metric("tpr_average", tpr_average)
+
+    trusted_types = [
+    "catboost.core.CatBoostClassifier",
+    "sklearn.metrics._ranking.roc_auc_score",
+    "sklearn.metrics._scorer._CurveScorer",
+    "sklearn.metrics._scorer._Scorer",
+    "sklearn.utils._metadata_requests.MetadataRequest",
+    "sklearn.utils._metadata_requests.MethodMetadataRequest",
+    ]
+
+    mlflow.sklearn.log_model(
+    model,
+    "model",
+    skops_trusted_types=trusted_types,
+    )
+
+  #  mlflow.sklearn.log_model(model, "model")
+    mlflow.log_artifact(SUBMISSION_CSV_PATH)
+```
+
+## 3. Model deployment with Docker
+
+
 
 
 ## 4. Kaggle challenge result
+
+
 
 
 
