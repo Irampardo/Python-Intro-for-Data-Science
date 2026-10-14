@@ -125,11 +125,13 @@ To run Docker file
 ```bash
 docker run --rm my_first_image
 ```
-## 3.2. Deply the model using MLFlow and Docker.
+## 3.2. Deploy the model using MLFlow and Docker.
 
 ```bash
 export MLFLOW_TRACKING_URI=http://localhost:5000
-mlflow models build-docker --model-uri models:/<my_model>/Mmy_version> -n <my_docker_image_name>
+mlflow models build-docker \
+  --model-uri "models:/loan_prediction_model/1" \
+  --name "mymodel/loan_prediction_model"
 docker run <my_docker_image_name>
 ```
 
@@ -137,9 +139,7 @@ In our case it was:
 
 ```bash
 export MLFLOW_TRACKING_URI=http://localhost:5000
-mlflow models build-docker \
-  --model-uri "models:/loan_prediction_model/1" \
-  --name "mymodel/loan_prediction_model"
+mlflow models build-docker --model-uri models:/<my_model>/Mmy_version> -n <my_docker_image_name>
 docker run <my_docker_image_name>
 ```
 
