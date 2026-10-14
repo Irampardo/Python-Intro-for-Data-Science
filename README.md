@@ -140,7 +140,7 @@ In our case it was:
 ```bash
 export MLFLOW_TRACKING_URI=http://localhost:5000
 mlflow models build-docker --model-uri models:/<my_model>/Mmy_version> -n <my_docker_image_name>
-docker run <my_docker_image_name>
+docker run mymodel/loan_prediction_model
 ```
 
 Optional: To check available registered models:
