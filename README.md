@@ -137,11 +137,54 @@ docker run <my_docker_image_name>
 
 In our case it was:
 
+<<<<<<< HEAD
+3.2.1. Create a docker image and run it
+```bash
+export MLFLOW_TRACKING_URI=http://localhost:5000
+# Build a docker image
+mlflow models build-docker --model-uri models:/<my_model>/Mmy_version> -n <my_docker_image_name>
+# Run the docker image
+docker run -p 5001:8080 mymodel/loan_prediction_model
+```
+![description](https://github.com/Irampardo/Python-Intro-for-Data-Science/blob/main/IRP_Docker-image.png)
+![description](https://github.com/Irampardo/Python-Intro-for-Data-Science/blob/main/IRP_Docker-run.png)
+
+3.2.2. In a second terminal, convert "test.csv" containing all variables but the predicted variable, into a .json format
+
+```python
+import pandas as pd
+import json
+
+df = pd.read_csv("../data/loan_prediction/test.csv")
+#df = df.drop(columns=["loan_default"])
+
+payload = {
+    "dataframe_split": {
+        "columns": df.columns.tolist(),
+        "data": df.values.tolist()
+    }
+}
+
+with open("../data/loan_prediction/test.json", "w") as f:
+    json.dump(payload, f)
+```
+
+3.3.3. In the second terminal run this command to run the "test.json" input in our registered model contained in the docker image
+
+```bash
+# Test a prediction using the model contained in the docker image
+curl -X POST http://localhost:5001/invocations \
+  -H "Content-Type: application/json" \
+  --data-binary @./data/loan_prediction/test.json
+```
+![description](https://github.com/Irampardo/Python-Intro-for-Data-Science/blob/main/IRP_Model-test-in-docker.png)
+=======
 ```bash
 export MLFLOW_TRACKING_URI=http://localhost:5000
 mlflow models build-docker --model-uri models:/<my_model>/Mmy_version> -n <my_docker_image_name>
 docker run <my_docker_image_name>
 ```
+>>>>>>> origin/main
 
 Optional: To check available registered models:
 

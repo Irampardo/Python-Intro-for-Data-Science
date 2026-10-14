@@ -1,0 +1,16 @@
+channels:
+- conda-forge
+dependencies:
+- python=3.14.0
+- pip<=26.2.1
+- pip:
+  - mlflow==3.16.0
+  - catboost==1.2.10
+  - ipywidgets==8.1.9
+  - numpy==2.5.4
+  - pandas==3.0.6
+  - scikit-learn==1.9.1
+  - scipy==1.18.1
+  - skops==0.16.0
+  - xgboost==3.4.2
+name: mlflow-env

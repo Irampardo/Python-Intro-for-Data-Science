@@ -1,0 +1,43 @@
+artifact_path: mlflow-artifacts:/2/models/m-a378e240d22548d788dec73b1c5a8f32/artifacts
+flavors:
+  python_function:
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.sklearn
+    model_path: model.skops
+    predict_fn: predict
+    python_version: 3.14.0
+  sklearn:
+    code: null
+    pickled_model: model.skops
+    serialization_format: skops
+    sklearn_version: 1.9.1
+    skops_trusted_types:
+    - sklearn.tree._tree.Tree
+is_signature_from_type_hint: false
+mlflow_version: 3.16.0
+model_id: m-a378e240d22548d788dec73b1c5a8f32
+model_size_bytes: 51837356
+model_uuid: m-a378e240d22548d788dec73b1c5a8f32
+prompts: null
+run_id: bc92c1dbf157467ba8ade4cc58864bc9
+saved_input_example_info:
+  artifact_path: input_example.json
+  pandas_orient: split
+  serving_input_path: serving_input_example.json
+  type: dataframe
+signature:
+  inputs: '[{"type": "long", "name": "id", "required": true}, {"type": "long", "name":
+    "person_age", "required": true}, {"type": "long", "name": "person_income", "required":
+    true}, {"type": "long", "name": "person_home_ownership", "required": true}, {"type":
+    "double", "name": "person_emp_length", "required": true}, {"type": "long", "name":
+    "loan_intent", "required": true}, {"type": "long", "name": "loan_grade", "required":
+    true}, {"type": "long", "name": "loan_amnt", "required": true}, {"type": "double",
+    "name": "loan_int_rate", "required": true}, {"type": "double", "name": "loan_percent_income",
+    "required": true}, {"type": "long", "name": "cb_person_default_on_file", "required":
+    true}, {"type": "long", "name": "cb_person_cred_hist_length", "required": true}]'
+  outputs: '[{"type": "double", "required": true}]'
+  params: null
+type_hint_from_example: false
+utc_time_created: '2026-10-12 20:08:59.691935'
