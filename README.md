@@ -146,7 +146,7 @@ mlflow models build-docker --model-uri models:/<my_model>/Mmy_version> -n <my_do
 docker run -p 5001:8080 mymodel/loan_prediction_model
 ```
 ![description](https://github.com/Irampardo/Python-Intro-for-Data-Science/blob/main/IRP_Docker-image.png)
-![description](https://github.com/Irampardo/Python-Intro-for-Data-Science#:~:text=1%20minute%20ago-,IRP_Docker%2Drun.png,-docker%20test)
+![description](https://github.com/Irampardo/Python-Intro-for-Data-Science/blob/main/IRP_Docker-run.png)
 
 3.2.2. In a second terminal, convert "test.csv" containing all variables but the predicted variable, into a .json format
 
