@@ -137,6 +137,7 @@ docker run <my_docker_image_name>
 
 In our case it was:
 
+<<<<<<< HEAD
 3.2.1. Create a docker image and run it
 ```bash
 export MLFLOW_TRACKING_URI=http://localhost:5000
@@ -177,6 +178,13 @@ curl -X POST http://localhost:5001/invocations \
   --data-binary @./data/loan_prediction/test.json
 ```
 ![description](https://github.com/Irampardo/Python-Intro-for-Data-Science/blob/main/IRP_Model-test-in-docker.png)
+=======
+```bash
+export MLFLOW_TRACKING_URI=http://localhost:5000
+mlflow models build-docker --model-uri models:/<my_model>/Mmy_version> -n <my_docker_image_name>
+docker run <my_docker_image_name>
+```
+>>>>>>> origin/main
 
 Optional: To check available registered models:
 
